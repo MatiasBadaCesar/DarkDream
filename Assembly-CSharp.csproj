@@ -59,7 +59,7 @@
     <Compile Include="Assets\2_Scripts\Player2\Player2.cs" />
     <Compile Include="Assets\2_Scripts\Player1\ChangeStatesPlayer1.cs" />
     <Compile Include="Assets\2_Scripts\Win.cs" />
-    <Compile Include="Assets\2_Scripts\ControlMaster.cs" />
+    <Compile Include="Assets\2_Scripts\ChangePlayers.cs" />
     <Compile Include="Assets\2_Scripts\AnimatedText.cs" />
     <Compile Include="Assets\2_Scripts\Player1\Player1.cs" />
     <Compile Include="Assets\2_Scripts\Player2\IsGroundPlayer2.cs" />

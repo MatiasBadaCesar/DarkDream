@@ -443,7 +443,7 @@ GameObject:
   - component: {fileID: 328604644}
   m_Layer: 0
   m_Name: body1
-  m_TagString: Untagged
+  m_TagString: White
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1114,8 +1114,8 @@ Transform:
   m_Children:
   - {fileID: 1663797910}
   - {fileID: 407075474}
-  - {fileID: 795075471}
   - {fileID: 4955143122160198708}
+  - {fileID: 795075471}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1130,7 +1130,7 @@ GameObject:
   - component: {fileID: 1017030104}
   m_Layer: 0
   m_Name: body2
-  m_TagString: Untagged
+  m_TagString: Black
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

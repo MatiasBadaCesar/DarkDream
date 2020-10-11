@@ -9,7 +9,7 @@ public class Player1 : MonoBehaviour
     //Objetos Primarios=
     //Personales:
     public GameObject playerCamera1;
-    private Rigidbody2D rb2d;
+    private Rigidbody2D rb;
     public ChangeStatesPlayer1 changeStates;
     public GameObject body;
     public Animator anim;
@@ -24,6 +24,7 @@ public class Player1 : MonoBehaviour
     //A los lados:
     private float moveHorizontal; //Direccion horizontal donde se movera el jugador (solo incluye derecha o izquierda)
     private float speed; //Velocidad con que corre el jugador  
+    public List<string> controlMovement;
 
     //Habilidad=
     private bool keyUp;
@@ -51,12 +52,14 @@ public class Player1 : MonoBehaviour
         //Objetos Primarios=
         {
             //Asignar objetos:
-            rb2d = GetComponent<Rigidbody2D>();
+            rb = GetComponent<Rigidbody2D>();
         }
 
         //Movimiento=
         {
-            speed = 50;
+            speed = 20;
+            controlMovement.Add ("a"); //0
+            controlMovement.Add ("d"); //1
         }
 
         //Habilidad
@@ -80,26 +83,22 @@ public class Player1 : MonoBehaviour
         {
             //Movimiento=
             {
-                moveHorizontal = Input.GetAxis("Horizontal");
-                if (Input.GetKey("left") || Input.GetKey("right") || Input.GetKey("a") || Input.GetKey("d"))
+                if (Input.GetKey(controlMovement[0]) && !Input.GetKey(controlMovement[1]) || Input.GetKey(controlMovement[1]) && !Input.GetKey(controlMovement[0]))
                 {
                     //anim.SetBool("Idle", false);
-                    if (Input.GetKey("left") || Input.GetKey("a"))
-                    {
-                        transform.position += transform.right * Time.deltaTime * -speed;
-                        body.transform.localScale = new Vector2(body.transform.localScale.x, body.transform.localScale.y);
-                        //anim.SetBool("Run", true);
-                    }
-                    if (Input.GetKey("right") || Input.GetKey("d"))
-                    {
-                        transform.position += transform.right * Time.deltaTime * speed;
-                        body.transform.localScale = new Vector2(body.transform.localScale.x, -body.transform.localScale.y);
-                        //anim.SetBool("Run", true);
-                    }
+                    //anim.SetBool("Run", true);
+                    moveHorizontal = Input.GetAxis("Horizontal") * speed;
+                    rb.AddForce(Vector2.right * moveHorizontal, ForceMode2D.Impulse);
+                    if (rb.velocity.magnitude > speed)
+                        ForceReduced();
                 }
                 else
                 {
-                    Repose();
+                    if (rb.velocity.magnitude > 0)
+                    {
+                        ForceReduced();
+                        Repose();
+                    }
                 }
             }
 
@@ -134,6 +133,10 @@ public class Player1 : MonoBehaviour
     {
         //anim.SetBool("Idle", true);
         //anim.SetBool("Run", false);
+    }
+    private void ForceReduced()
+    {
+        rb.AddForce(new Vector2(-rb.velocity.x, 0) * 1 * 0.2f, ForceMode2D.Impulse);
     }
     //muerte=
     private void Dead()

@@ -223,7 +223,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1656017471855186794}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 93d34f5d1ef72594694f597ea4b85f04, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -258,6 +258,8 @@ MonoBehaviour:
   anim: {fileID: 8286236477468043165}
   levelManager: {fileID: 0}
   active: 1
+  speed: 0
+  controlMovement: []
 --- !u!1 &1656017472376995128
 GameObject:
   m_ObjectHideFlags: 0
@@ -302,8 +304,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeSkill: 0
-  body1: {fileID: 0}
-  body2: {fileID: 0}
+  objectWhite: []
+  objectBlack: []
 --- !u!1 &7540759619943932898
 GameObject:
   m_ObjectHideFlags: 0

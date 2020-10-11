@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ChangeStatesPlayer1 : MonoBehaviour
@@ -7,8 +8,8 @@ public class ChangeStatesPlayer1 : MonoBehaviour
     //Atrivutos y Propiedaes
     private bool skill;
     public bool changeSkill;
-    public GameObject body1;
-    public GameObject body2;
+    public List<GameObject> objectWhite;
+    public List<GameObject> objectBlack;
 
     //Activar Habilidad
     private void Start()
@@ -17,21 +18,49 @@ public class ChangeStatesPlayer1 : MonoBehaviour
         {
             skill = true;
         }
+        SelectObject();
         ChangeStates();
     }
+   
     public void ChangeStates()
     {
         if (skill == true)
         {
-            body1.SetActive(true);
-            body2.SetActive(false);
+            foreach (var obj in objectWhite)
+            {
+                obj.SetActive(true);
+            }
+
+            foreach (var obj in objectBlack)
+            {
+                obj.SetActive(false);
+            }
             skill = false;
         }
         else
         {
-            body1.SetActive(false);
-            body2.SetActive(true);
+            foreach (var obj in objectWhite)
+            {
+                obj.SetActive(false);
+            }
+
+            foreach (var obj in objectBlack)
+            {
+                obj.SetActive(true);
+            }
             skill = true;
+        }
+    }
+
+    private void SelectObject()
+    {
+        foreach (GameObject fooObj in GameObject.FindGameObjectsWithTag("White"))
+        {
+            objectWhite.Add(fooObj);
+        }
+        foreach (GameObject fooObj in GameObject.FindGameObjectsWithTag("Black"))
+        {
+            objectBlack.Add(fooObj);
         }
     }
 

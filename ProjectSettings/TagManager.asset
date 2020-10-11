@@ -8,6 +8,8 @@ TagManager:
   - PlayerLamp
   - Ground
   - Enemy
+  - White
+  - Black
   layers:
   - Default
   - TransparentFX
