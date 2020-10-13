@@ -19,6 +19,7 @@ public class Player1 : MonoBehaviour
 
     //Estados Generales=
     public bool active;
+    private float bodyx;
 
     //Movimiento=
     //A los lados:
@@ -71,13 +72,13 @@ public class Player1 : MonoBehaviour
         {
             //Llamado de Metodos:
             if (active == true)
-            {
                 Active();
-            }
+            //Valor scala X body:
+            bodyx = body.transform.localScale.x;
         }
 
     }
-    void Update()
+    void FixedUpdate()
     {
         if (active == true)
         {
@@ -85,16 +86,24 @@ public class Player1 : MonoBehaviour
             {
                 if (Input.GetKey(controlMovement[0]) && !Input.GetKey(controlMovement[1]) || Input.GetKey(controlMovement[1]) && !Input.GetKey(controlMovement[0]))
                 {
-                    //anim.SetBool("Idle", false);
-                    //anim.SetBool("Run", true);
+                    anim.SetBool("Run", true);
                     moveHorizontal = Input.GetAxis("Horizontal") * speed;
                     rb.AddForce(Vector2.right * moveHorizontal, ForceMode2D.Impulse);
                     if (rb.velocity.magnitude > speed)
                         ForceReduced();
+                    //Animacion:
+                    if (moveHorizontal > 0)
+                    {
+                        body.transform.localScale = new Vector2(bodyx, body.transform.localScale.y);
+                    }
+                    if (moveHorizontal < 0)
+                    {
+                        body.transform.localScale = new Vector2(-bodyx, body.transform.localScale.y);
+                    }
                 }
                 else
                 {
-                    if (rb.velocity.magnitude > 0)
+                    if (rb.velocity.magnitude > 0 || anim.GetBool ("Run"))
                     {
                         ForceReduced();
                         Repose();
@@ -104,7 +113,7 @@ public class Player1 : MonoBehaviour
 
             //Habilidad= 
             {
-                if (Input.GetKey("up") || Input.GetKey("w"))
+                if (Input.GetKey("w"))
                 {
                     if (keyUp == true)
                     {
@@ -114,7 +123,8 @@ public class Player1 : MonoBehaviour
                 }
                 else
                 {
-                    keyUp = true;
+                    if (keyUp == false)
+                        keyUp = true;
                 }
             }
         }
@@ -131,8 +141,7 @@ public class Player1 : MonoBehaviour
     //reposo=
     private void Repose()
     {
-        //anim.SetBool("Idle", true);
-        //anim.SetBool("Run", false);
+        anim.SetBool("Run", false);
     }
     private void ForceReduced()
     {
@@ -148,7 +157,7 @@ public class Player1 : MonoBehaviour
     {
         if (collision.GetComponent<Collider2D>().tag == "Enemy")
         {
-            levelManager.Restart();
+            Dead();
         }
     }
 

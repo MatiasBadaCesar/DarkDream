@@ -1317,7 +1317,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1139369217543172267, guid: 1851b980ef66a9c4bb0c628f7bb608e2, type: 3}
       propertyPath: m_TagString
-      value: White
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 1139369217543172267, guid: 1851b980ef66a9c4bb0c628f7bb608e2, type: 3}
       propertyPath: m_IsActive
@@ -2173,6 +2173,18 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 93d34f5d1ef72594694f597ea4b85f04, type: 2}
+    - target: {fileID: 1656017471855186791, guid: da747e92d53b6354daccb1d1f9db622f, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.0037288666
+      objectReference: {fileID: 0}
+    - target: {fileID: 1656017471855186791, guid: da747e92d53b6354daccb1d1f9db622f, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.08665013
+      objectReference: {fileID: 0}
+    - target: {fileID: 1656017471855186791, guid: da747e92d53b6354daccb1d1f9db622f, type: 3}
+      propertyPath: m_Size.y
+      value: 12.762892
+      objectReference: {fileID: 0}
     - target: {fileID: 1656017471855186792, guid: da747e92d53b6354daccb1d1f9db622f, type: 3}
       propertyPath: levelManager
       value: 
@@ -2237,6 +2249,14 @@ PrefabInstance:
       propertyPath: body2
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2483680960380764706, guid: da747e92d53b6354daccb1d1f9db622f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: -0.3829307
+      objectReference: {fileID: 0}
+    - target: {fileID: 8286236477468043166, guid: da747e92d53b6354daccb1d1f9db622f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c73330f7478efbc45bdd11767aefe36e, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da747e92d53b6354daccb1d1f9db622f, type: 3}
 --- !u!4 &4955143122160198708 stripped
