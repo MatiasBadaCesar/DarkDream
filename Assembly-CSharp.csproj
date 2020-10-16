@@ -64,6 +64,7 @@
     <Compile Include="Assets\2_Scripts\Player1\Player1.cs" />
     <Compile Include="Assets\2_Scripts\Player2\IsGroundPlayer2.cs" />
     <Compile Include="Assets\2_Scripts\Piston.cs" />
+    <Compile Include="Assets\2_Scripts\Player1\Player1DeadVisted.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

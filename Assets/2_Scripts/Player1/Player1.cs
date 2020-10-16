@@ -150,8 +150,16 @@ public class Player1 : MonoBehaviour
     //muerte=
     private void Dead()
     {
+        active = false;
+        Repose();
+        rb.velocity = Vector2.zero;
+        anim.SetBool("Dead", true);
+    }
+    public void ResetLevel()
+    {
         levelManager.Restart();
     }
+
     //collider=
     private void OnTriggerEnter2D(Collider2D collision)
     {
