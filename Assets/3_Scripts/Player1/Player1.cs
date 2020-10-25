@@ -79,7 +79,7 @@ public class Player1 : MonoBehaviour
         }
 
     }
-    void FixedUpdate()
+    void Update()
     {
         if (active == true)
         {
@@ -87,12 +87,13 @@ public class Player1 : MonoBehaviour
             {
                 if (Input.GetKey(controlMovement[0]) && !Input.GetKey(controlMovement[1]) || Input.GetKey(controlMovement[1]) && !Input.GetKey(controlMovement[0]))
                 {
-                    anim.SetBool("Run", true);
                     moveHorizontal = Input.GetAxis("Horizontal") * speed;
                     rb.AddForce(Vector2.right * moveHorizontal, ForceMode2D.Impulse);
                     if (rb.velocity.magnitude > speed)
                         ForceReduced();
+
                     //Animacion:
+                    anim.SetBool("Run", true);
                     if (moveHorizontal > 0)
                     {
                         body.transform.localScale = new Vector2(bodyx, body.transform.localScale.y);
@@ -127,6 +128,14 @@ public class Player1 : MonoBehaviour
                     if (keyUp == false)
                         keyUp = true;
                 }
+            }
+        }
+        else
+        {
+            if (rb.velocity.magnitude > 0 || anim.GetBool("Run"))
+            {
+                ForceReduced();
+                Repose();
             }
         }
     }

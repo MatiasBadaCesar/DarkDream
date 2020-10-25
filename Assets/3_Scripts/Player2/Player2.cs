@@ -11,7 +11,8 @@ public class Player2 : MonoBehaviour
     //Personales:
     public GameObject playerCamera2;
     public GameObject body;
-    private Rigidbody2D rb2d; //Rigidbody del propio jugador para poder controlar sus fisicas
+    private Rigidbody2D rb
+        ; //Rigidbody del propio jugador para poder controlar sus fisicas
     public GameObject bases;
     public Animator anim;
     private bool animIdle;
@@ -21,6 +22,7 @@ public class Player2 : MonoBehaviour
 
     //Estados Generales=
     public bool active; //Esta condicion desactivara sus funciones generales y basicas (Como moverse o morir). Pero no todos sus metodos
+    private float bodyx;
     public bool isGrounded; //Si esta tocando el suelo
     private bool isFalling; //Si esta cayendo
 
@@ -28,6 +30,7 @@ public class Player2 : MonoBehaviour
     //A los lados:
     private float moveHorizontal; //Direccion horizontal donde se movera el jugador (solo incluye derecha o izquierda)
     private float speed; //Velocidad con que corre el jugador  
+    public List<string> controlMovement;
     //Salto:
     public bool dontJump;
     private float jumpSpeed; //Velocidad de impulso del salto
@@ -53,7 +56,7 @@ public class Player2 : MonoBehaviour
     {
         //Objetos Primarios=
         {
-            rb2d = GetComponent<Rigidbody2D>();
+            rb = GetComponent<Rigidbody2D>();
             anim = bases.GetComponent<Animator>();
         }
 
@@ -66,12 +69,16 @@ public class Player2 : MonoBehaviour
         {
             //A los lados:
             speed=40;
+            controlMovement.Add("a"); //0
+            controlMovement.Add("d"); //1
             //Salto:
             jumpSpeed = 160;
         }
 
         //Asignacion General=
         {
+            //Valor scala X body:
+            bodyx = body.transform.localScale.x;
             //Animaciones por Defecto:
             anim.SetBool("Idle", true);
             animIdle = true;
@@ -81,7 +88,7 @@ public class Player2 : MonoBehaviour
     {
         //Si esta o no cayendo el objeto
         {
-            if (rb2d.velocity.y < -0.1)
+            if (rb.velocity.y < -0.1)
             {
                 IsFalling();
             }
@@ -95,85 +102,71 @@ public class Player2 : MonoBehaviour
         {
             //Movimiento=
             {
-                //A los lados:
+                if (Input.GetKey(controlMovement[0]) && !Input.GetKey(controlMovement[1]) || Input.GetKey(controlMovement[1]) && !Input.GetKey(controlMovement[0]))
                 {
-                    moveHorizontal = Input.GetAxis("Horizontal");
-                    if (Input.GetKey("left") || Input.GetKey("right") || Input.GetKey("a") || Input.GetKey("d"))
-                    {
-                        if (Input.GetKey("left") && Input.GetKey("right") || Input.GetKey("a") && Input.GetKey("d") || Input.GetKey("right") && Input.GetKey("a") || Input.GetKey("left") && Input.GetKey("d"))
-                        {
-                            if (Input.GetKey("up") || Input.GetKey("w"))
-                            {
+                    moveHorizontal = Input.GetAxis("Horizontal") * speed;
+                    rb.AddForce(Vector2.right * moveHorizontal, ForceMode2D.Impulse);
+                    if (rb.velocity.magnitude > speed)
+                        ForceReduced();
 
-                            }
-                            else
-                            {
-                                Repose();
-                            }
-                        }
-                        else
-                        {
-                            anim.SetBool("Idle", false);
-                            animIdle = false;
-                            if (Input.GetKey("left") || Input.GetKey("a"))
-                            {
-                                transform.position += transform.right * Time.deltaTime * -speed;
-                                body.transform.localScale = new Vector2(1.8f, body.transform.localScale.y);
-                                anim.SetBool("Run", true);
-                                animRun = true;
-                            }
-                            if (Input.GetKey("right") || Input.GetKey("d"))
-                            {
-                                transform.position += transform.right * Time.deltaTime * speed;
-                                body.transform.localScale = new Vector2(-1.8f, body.transform.localScale.y);
-                                anim.SetBool("Run", true);
-                                animRun = true;
-                            }
-                        }
+                    //Animacion:
+                    anim.SetBool("Idle", false);
+                    anim.SetBool("Run", true);
+                    animIdle = false;
+                    animRun = true;
+                    if (moveHorizontal < 0)
+                    {
+                        body.transform.localScale = new Vector2(1.8f, body.transform.localScale.y);
                     }
-                    //Reposo:
-                    else
+                    if (moveHorizontal > 0)
                     {
-                        if (Input.GetKey("up") || Input.GetKey("w"))
-                        {
-
-                        }
-                        else
-                        {
-                            if (animRun == true)
-                            {
-                                Repose();
-                            }
-                        }
+                        body.transform.localScale = new Vector2(-1.8f, body.transform.localScale.y);
+                    }
+                    if (rb.velocity.magnitude > 0 || anim.GetBool("Run") || isGrounded == false)
+                    {
+                        ForceReduced();
                     }
                 }
-                //Salto:         
+                else
                 {
-                    if (dontJump == false)
+                    if (rb.velocity.magnitude > 0 || anim.GetBool("Run") || isGrounded == false)
                     {
-                        if (Input.GetKey("up") || Input.GetKey("w"))
+                        ForceReduced();
+                        Repose();
+                    }
+                }
+            }
+
+            //Salto:         
+            {
+                if (dontJump == false)
+                {
+                    if (Input.GetKey("w"))
+                    {
+                        if (keyUp == false)
                         {
-                            if (keyUp == false)
+                            keyUp = true;
+                            //saltar=
+                            if (isGrounded == true)
                             {
-                                keyUp = true;
-                                //saltar=
-                                if (isGrounded == true)
-                                {
-                                    Jump(); //salto  
-                                }
+                                Jump(); //salto  
                             }
                         }
-                        else
-                        {
-                            keyUp = false;
-                        }
+                    }
+                    else
+                    {
+                        keyUp = false;
                     }
                 }
             }
         }
         else
         {
-            Repose();
+            if (rb.velocity.magnitude > 0 || anim.GetBool("Run"))
+            {
+                ForceReduced();
+                Repose();
+            }
         }
     }
 
@@ -183,8 +176,8 @@ public class Player2 : MonoBehaviour
     {
         IsNotGrounded();
         anim.SetBool("Jump", true);
-        rb2d.velocity *= 0f;
-        rb2d.AddForce(Vector3.up * jumpSpeed, ForceMode2D.Impulse);
+        rb.velocity *= 0f;
+        rb.AddForce(Vector3.up * jumpSpeed, ForceMode2D.Impulse);
     }
     //caida=
     private void IsFalling()
@@ -200,7 +193,7 @@ public class Player2 : MonoBehaviour
     //suspendido=
     public void IsGrounded()
     {
-        rb2d.velocity *= 0f;
+        rb.velocity *= 0f;
         isGrounded = true;
         anim.SetBool("NotGround", false);
         anim.SetBool("Jump", false);
@@ -231,6 +224,10 @@ public class Player2 : MonoBehaviour
             anim.SetBool("Idle", true);
             animIdle = true;
         }
+    }
+    private void ForceReduced()
+    {
+        rb.AddForce(new Vector2(-rb.velocity.x, 0) * 1 * 0.2f, ForceMode2D.Impulse);
     }
     //muerto=
     public void Dead()
