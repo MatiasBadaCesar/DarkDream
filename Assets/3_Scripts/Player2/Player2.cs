@@ -232,21 +232,26 @@ public class Player2 : MonoBehaviour
     //muerto=
     public void Dead()
     {
-        /*    
-            anim.SetBool("Alive", false);
-            anim.SetBool("MoveRight", false);
-            anim.SetBool("MoveLeft", false);
-            anim.SetBool("Shield", false);
-            anim.SetBool("Death", true);
-        */
+        active = false;
+        Repose();
+        rb.velocity = Vector2.zero;
+        anim.SetBool("Idle", false);
+        anim.SetBool("Run", false);
+        anim.SetBool("Jump", false);
+        anim.SetBool("Fall", false);
+        anim.SetBool("Dead", true);
+    }
+    public void ResetLevel()
+    {
         levelManager.Restart();
     }
+
     //collider=
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.GetComponent<Collider2D>().tag == "Enemy")
         {
-            levelManager.Restart();
+            Dead();
         }
     }
 }
