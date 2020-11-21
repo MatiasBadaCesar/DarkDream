@@ -10,6 +10,9 @@ TagManager:
   - Enemy
   - White
   - Black
+  - Player1
+  - Player2
+  - CanvasText
   layers:
   - Default
   - TransparentFX

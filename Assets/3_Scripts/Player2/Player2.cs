@@ -1,5 +1,4 @@
-﻿
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,8 +10,7 @@ public class Player2 : MonoBehaviour
     //Personales:
     public GameObject playerCamera2;
     public GameObject body;
-    private Rigidbody2D rb
-        ; //Rigidbody del propio jugador para poder controlar sus fisicas
+    private Rigidbody2D rb; //Rigidbody del propio jugador para poder controlar sus fisicas
     public GameObject bases;
     public Animator anim;
     private bool animIdle;
@@ -68,11 +66,11 @@ public class Player2 : MonoBehaviour
         //Movimiento=
         {
             //A los lados:
-            speed=40;
+            speed=45;
             controlMovement.Add("a"); //0
             controlMovement.Add("d"); //1
             //Salto:
-            jumpSpeed = 160;
+            jumpSpeed = 170;
         }
 
         //Asignacion General=
@@ -84,7 +82,8 @@ public class Player2 : MonoBehaviour
             animIdle = true;
         }
     }
-    void Update()
+   
+    void FixedUpdate()
     {
         //Si esta o no cayendo el objeto
         {
@@ -109,6 +108,7 @@ public class Player2 : MonoBehaviour
                     if (rb.velocity.magnitude > speed)
                         ForceReduced();
 
+                    
                     //Animacion:
                     anim.SetBool("Idle", false);
                     anim.SetBool("Run", true);
@@ -169,7 +169,7 @@ public class Player2 : MonoBehaviour
             }
         }
     }
-
+     
     //Secundario:
     //salto=
     private void Jump()

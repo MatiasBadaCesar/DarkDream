@@ -79,8 +79,8 @@ public class Player1 : MonoBehaviour
         }
 
     }
-    void Update()
-    {
+    void FixedUpdate()
+    {  
         if (active == true)
         {
             //Movimiento=
