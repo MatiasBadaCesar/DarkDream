@@ -80,8 +80,12 @@ public class Player1 : MonoBehaviour
 
     }
     void FixedUpdate()
-    {  
-        if (active == true)
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+            if (active == true)
         {
             //Movimiento=
             {

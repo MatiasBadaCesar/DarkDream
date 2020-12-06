@@ -51,17 +51,20 @@ public class AnimatedText : MonoBehaviour
                 // enter.SetActive(false);
             }
 
+     
+
             if (lineaActual < message.Length - 1 && checkNext && Input.GetKeyDown(KeyCode.Return))
             {
                 NextText();
             }
+           
         }
     }
+
 
     public void NextText()
     {
         lineaActual++;
-
         checkNext = false;
         textComp.text = "";
 

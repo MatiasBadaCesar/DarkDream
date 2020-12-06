@@ -66,7 +66,7 @@ public class Player2 : MonoBehaviour
         //Movimiento=
         {
             //A los lados:
-            speed=45;
+            speed=130;
             controlMovement.Add("a"); //0
             controlMovement.Add("d"); //1
             //Salto:
@@ -227,7 +227,7 @@ public class Player2 : MonoBehaviour
     }
     private void ForceReduced()
     {
-        rb.AddForce(new Vector2(-rb.velocity.x, 0) * 1 * 0.2f, ForceMode2D.Impulse);
+        rb.AddForce(new Vector2(-rb.velocity.x, 0) * 3 * 0.2f, ForceMode2D.Impulse);
     }
     //muerto=
     public void Dead()

@@ -2145,11 +2145,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1416767382916741159, guid: b6f24108146a502468cf1a701b4c70bc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 29.579628
+      value: 24.2
       objectReference: {fileID: 0}
     - target: {fileID: 1416767382916741159, guid: b6f24108146a502468cf1a701b4c70bc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -30.90001
+      value: -31.2
       objectReference: {fileID: 0}
     - target: {fileID: 1416767382916741159, guid: b6f24108146a502468cf1a701b4c70bc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2195,6 +2195,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WallThornsWhite
       objectReference: {fileID: 0}
+    - target: {fileID: 4880259549626983385, guid: b6f24108146a502468cf1a701b4c70bc, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6f24108146a502468cf1a701b4c70bc, type: 3}
 --- !u!4 &1610282844 stripped
@@ -2219,7 +2223,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7565052975235567357, guid: bd7a71588ae6a9347a707a70a74079df, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -21.366592
+      value: -22.1
       objectReference: {fileID: 0}
     - target: {fileID: 7565052975235567357, guid: bd7a71588ae6a9347a707a70a74079df, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2573,6 +2577,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 175235820}
     m_Modifications:
+    - target: {fileID: 2913783471199799177, guid: 8291131b022dcd448ace38c9c3436bfb, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8681993370356227191, guid: 8291131b022dcd448ace38c9c3436bfb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 25.379623
