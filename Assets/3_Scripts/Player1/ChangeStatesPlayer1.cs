@@ -6,7 +6,7 @@ using UnityEngine;
 public class ChangeStatesPlayer1 : MonoBehaviour
 {
     //Atrivutos y Propiedaes
-    private bool skill;
+    public bool skill;
     public bool changeSkill;
     public List<GameObject> objectWhite;
     public List<GameObject> objectBlack;

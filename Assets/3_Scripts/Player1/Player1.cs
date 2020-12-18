@@ -12,6 +12,7 @@ public class Player1 : MonoBehaviour
     private Rigidbody2D rb;
     public ChangeStatesPlayer1 changeStates;
     public GameObject body;
+    public SpriteRenderer bodysprite;
     public Animator anim;
     public AudioSource audioHabilidad;
 
@@ -21,6 +22,7 @@ public class Player1 : MonoBehaviour
     //Estados Generales=
     public bool active;
     private float bodyx;
+    private bool modeAnim;
 
     //Movimiento=
     //A los lados:
@@ -39,6 +41,7 @@ public class Player1 : MonoBehaviour
     {
         active = true;
         playerCamera1.SetActive(true);
+
     }
     public void Desactive()
     {
@@ -85,35 +88,44 @@ public class Player1 : MonoBehaviour
         {
             Application.Quit();
         }
-            if (active == true)
+        if (active == true)
         {
             //Movimiento=
             {
-                if (Input.GetKey(controlMovement[0]) && !Input.GetKey(controlMovement[1]) || Input.GetKey(controlMovement[1]) && !Input.GetKey(controlMovement[0]))
-                {
-                    moveHorizontal = Input.GetAxis("Horizontal") * speed;
-                    rb.AddForce(Vector2.right * moveHorizontal, ForceMode2D.Impulse);
-                    if (rb.velocity.magnitude > speed)
-                        ForceReduced();
 
-                    //Animacion:
-                    anim.SetBool("Run", true);
-                    if (moveHorizontal > 0)
+                if (modeAnim == false)
+                {
+                    if (Input.GetKey(controlMovement[0]) && !Input.GetKey(controlMovement[1]) || Input.GetKey(controlMovement[1]) && !Input.GetKey(controlMovement[0]))
                     {
-                        body.transform.localScale = new Vector2(bodyx, body.transform.localScale.y);
+                        moveHorizontal = Input.GetAxis("Horizontal") * speed;
+                        rb.AddForce(Vector2.right * moveHorizontal, ForceMode2D.Impulse);
+                        if (rb.velocity.magnitude > speed)
+                            ForceReduced();
+
+                        //Animacion:
+                        anim.SetBool("Run", true);
+                        if (moveHorizontal > 0)
+                        {
+                            body.transform.localScale = new Vector2(bodyx, body.transform.localScale.y);
+                        }
+                        if (moveHorizontal < 0)
+                        {
+                            body.transform.localScale = new Vector2(-bodyx, body.transform.localScale.y);
+                        }
                     }
-                    if (moveHorizontal < 0)
+                    else
                     {
-                        body.transform.localScale = new Vector2(-bodyx, body.transform.localScale.y);
+                        if (rb.velocity.magnitude > 0 || anim.GetBool("Run"))
+                        {
+                            ForceReduced();
+                            Repose();
+                        }
                     }
                 }
                 else
                 {
-                    if (rb.velocity.magnitude > 0 || anim.GetBool ("Run"))
-                    {
+                    if (rb.velocity.magnitude > speed)
                         ForceReduced();
-                        Repose();
-                    }
                 }
             }
 
@@ -139,7 +151,11 @@ public class Player1 : MonoBehaviour
             if (rb.velocity.magnitude > 0 || anim.GetBool("Run"))
             {
                 ForceReduced();
-                Repose();
+                if (modeAnim == false)
+                {
+                    Repose();
+
+                }
             }
         }
     }
@@ -170,11 +186,23 @@ public class Player1 : MonoBehaviour
         rb.velocity = Vector2.zero;
         anim.SetBool("Dead", true);
     }
+    //Anim=
+    public void ActiveAnim()
+    {
+        anim.SetBool("Pavor", true);
+        modeAnim = true;
+
+        rb.velocity = Vector2.zero;
+        if(changeStates.skill == false)
+        {
+            Skill();
+        }
+    }
     public void ResetLevel()
     {
         levelManager.Restart();
     }
-
+    
     //collider=
     private void OnTriggerEnter2D(Collider2D collision)
     {

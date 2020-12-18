@@ -59,14 +59,20 @@
     <Compile Include="Assets\3_Scripts\LevelManager.cs" />
     <Compile Include="Assets\3_Scripts\Player2\Player2.cs" />
     <Compile Include="Assets\3_Scripts\Player1\ChangeStatesPlayer1.cs" />
+    <Compile Include="Assets\3_Scripts\NextGamePlayer2.cs" />
     <Compile Include="Assets\3_Scripts\Player1\Player1DeadVisted.cs" />
     <Compile Include="Assets\3_Scripts\Win.cs" />
     <Compile Include="Assets\3_Scripts\ChangePlayers.cs" />
+    <Compile Include="Assets\3_Scripts\Columna.cs" />
+    <Compile Include="Assets\3_Scripts\PistonColumna.cs" />
+    <Compile Include="Assets\3_Scripts\ActivarAnim.cs" />
     <Compile Include="Assets\3_Scripts\AnimatedText.cs" />
     <Compile Include="Assets\3_Scripts\Player1\Player1.cs" />
+    <Compile Include="Assets\3_Scripts\PlataformMovil.cs" />
     <Compile Include="Assets\3_Scripts\Player2\IsGroundPlayer2.cs" />
     <Compile Include="Assets\3_Scripts\Menu.cs" />
     <Compile Include="Assets\3_Scripts\Piston.cs" />
+    <Compile Include="Assets\3_Scripts\Cinematic.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -609,18 +615,6 @@
     <Reference Include="System.Xml.Serialization">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.1.4f1\Editor\Data\NetStandard\compat\2.0.0\shims\netfx\System.Xml.Serialization.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Sprite.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Tilemap.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.UI">
-      <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
     </Reference>
@@ -641,6 +635,9 @@
     </Reference>
     <Reference Include="Unity.2D.Path.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Path.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
       <HintPath>Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
@@ -663,8 +660,14 @@
     <Reference Include="Unity.InternalAPIEngineBridge.001">
       <HintPath>Library\ScriptAssemblies\Unity.InternalAPIEngineBridge.001.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.2D.Sprite.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.2D.Common.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Common.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Tilemap.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.SpriteShape.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.2D.SpriteShape.Runtime.dll</HintPath>
@@ -689,6 +692,9 @@
     </Reference>
     <Reference Include="Unity.InternalAPIEditorBridge.001">
       <HintPath>Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.UI">
+      <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
