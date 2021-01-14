@@ -11,10 +11,6 @@ public class Columna: MonoBehaviour
         anim = GetComponent<Animator>();
         Subir();
     }
-    void Update()
-    {
-        
-    }
 
     public void Subir()
     {

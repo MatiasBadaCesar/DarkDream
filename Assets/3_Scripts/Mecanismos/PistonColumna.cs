@@ -7,64 +7,41 @@ public class PistonColumna : MonoBehaviour
     public Columna objects;
     public bool permanente;
     public bool invertido;
-    public bool onlywhite;
-    public bool animActive;
-    public GameObject[] activar;
+    private bool unavez;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (onlywhite == false)
-        {
-            if (invertido == false)
+        if (unavez == false) {
+            if (collision.GetComponent<Collider2D>().tag == "PlayerGround")
             {
-                objects.Bajar();
-
-                if (animActive == true)
+                if (invertido == false)
                 {
-                    activar[0].SetActive(true);
-                    activar[1].SetActive(true);
+                    objects.Bajar();
+
                 }
-            }
-            else
-            {
-                objects.Subir();
-            }
-        }
-        else
-        {
-            if (collision.GetComponent<Collider2D>().tag == "White")
-            {
-                objects.Subir();
+                else
+                {
+                    objects.Subir();
+                }
+                unavez = true;
             }
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (onlywhite == false)
+        if (permanente == false)
         {
-            if (permanente == false)
+            if (invertido == false)
             {
-                if (invertido == false)
-                {
-                    objects.Subir();
-                }
-                else
-                {
-                    objects.Bajar();
-                }
+                objects.Subir();
             }
-        }
-        else
-        {
-            if (collision.GetComponent<Collider2D>().tag == "White")
+            else
             {
-                if (animActive == false)
-                {
-                    objects.Bajar();
-                }
+                objects.Bajar();
             }
         }
     }
+
 }
 

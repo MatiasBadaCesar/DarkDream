@@ -55,6 +55,7 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\3_Scripts\Mecanismos\Puerta.cs" />
     <Compile Include="Assets\3_Scripts\Player2\Player2DeadVisted.cs" />
     <Compile Include="Assets\3_Scripts\LevelManager.cs" />
     <Compile Include="Assets\3_Scripts\Player2\Player2.cs" />
@@ -64,18 +65,22 @@
     <Compile Include="Assets\3_Scripts\Win.cs" />
     <Compile Include="Assets\3_Scripts\ChangePlayers.cs" />
     <Compile Include="Assets\3_Scripts\Columna.cs" />
+    <Compile Include="Assets\8_MaterialSpecial\Trout\Scripts\VisionTrout.cs" />
     <Compile Include="Assets\3_Scripts\Mecanismos\PistonColumna.cs" />
     <Compile Include="Assets\3_Scripts\ActivarAnim.cs" />
+    <Compile Include="Assets\8_MaterialSpecial\Trout\Scripts\TroutSpecial.cs" />
     <Compile Include="Assets\3_Scripts\AnimatedText.cs" />
     <Compile Include="Assets\3_Scripts\Cinematic.cs" />
     <Compile Include="Assets\3_Scripts\Player1\Player1.cs" />
-    <Compile Include="Assets\3_Scripts\PlataformMovil.cs" />
+    <Compile Include="Assets\3_Scripts\Mecanismos\PlataformMovil.cs" />
     <Compile Include="Assets\3_Scripts\Player2\IsGroundPlayer2.cs" />
     <Compile Include="Assets\3_Scripts\Menu.cs" />
+    <Compile Include="Assets\8_MaterialSpecial\Trout\Scripts\Trout.cs" />
+    <Compile Include="Assets\3_Scripts\ActiveObject.cs" />
     <Compile Include="Assets\3_Scripts\Mecanismos\Piston.cs" />
-    <Compile Include="Assets\3_Scripts\Mecanismos\Puerta.cs" />
   </ItemGroup>
   <ItemGroup>
+     <None Include="Assets\9_Tipografia\Corroido 2\License Request.txt" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
